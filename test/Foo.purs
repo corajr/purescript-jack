@@ -6,6 +6,7 @@ import Data.Array as Array
 import Data.Foldable (elem)
 import Data.Generic (class Generic, gShow, gEq)
 import Data.Maybe (Maybe(..))
+import Data.Newtype (wrap)
 import Data.String (toCharArray, fromCharArray, contains)
 import Data.String as String
 
@@ -79,7 +80,7 @@ genAlphaNumString =
 prop_strings :: Property
 prop_strings =
   forAll genAlphaNumString \xs ->
-    property $ not $ contains "#" xs
+    property $ not $ contains (wrap "#") xs
 
 genEven :: Gen Int
 genEven =
